@@ -1,3 +1,6 @@
+"""
+Scraper for fly niki
+"""
 import sys
 import datetime
 import re
@@ -6,21 +9,28 @@ import lxml.html
 
 
 class ParametersError(RuntimeError):
+    """
+    class for errors in search parameters
+    """
     pass
 
 
 class SearchError(RuntimeError):
+    """
+    class for errors in received data
+    """
     pass
 
 
 # Functions for checking search parameters
 
-# Function return parameters for search request at flyniki.com.
-# Use optional argument check_iata_online = False to not online
-# checking IATA
-
 
 def check_search_parameters(search_parameters, check_iata_online=True):
+    """
+    Function return parameters for search request at flyniki.com.
+    Use optional argument check_iata_online = False to not online
+    checking IATA
+    """
     while True:
         count_errs = 0
         err_index = 0
