@@ -22,9 +22,6 @@ class SearchError(RuntimeError):
     pass
 
 
-# Functions for checking search parameters
-
-
 def check_search_parameters(search_parameters, check_iata_online=True):
     """
     Function return parameters for search request at flyniki.com.
@@ -201,9 +198,6 @@ def get_airports_from_site(departures='', searchfor='departures', show=False):
     return airports
 
 
-# Functions to get data from site and checking for errors
-
-
 def get_search_data(dep_iata, dest_iata, outbound_date, return_date, lang='en', shop='RU'):
     """
     Function to get data from site.
@@ -249,9 +243,6 @@ def check_for_result_errors(search_data):
     if 'No connections' in search_data['templates']['dateoverview']:
         raise SearchError('\nNo connections found for the entered data. '
                           'However, connections are available on days either side. Keep searching!')
-
-
-# Functions for getting search result
 
 
 def data_processing(search_html, return_date):
@@ -343,9 +334,6 @@ def get_currency_and_tax(search_data):
     currency = '(' + currency + ')'
     tax = float(tax_string[1].replace(',', ''))
     return currency, tax
-
-
-# Functions for printing results
 
 
 def check_combinability(search_html):
