@@ -97,7 +97,7 @@ def check_numbers_of_parameters(search_parameters):
 
 
 def check_iata(dep_iata, dest_iata, check_iata_online):
-    if len(dep_iata) != 3 or re.match("[A-Z]*$", dep_iata) is None:
+    if re.match("[A-Z]{3}$", dep_iata) is None:
         print('\nIncorrect departure airport IATA code format '
               '%s. Use AAA format.' % dep_iata)
         dep_iata = False
@@ -107,7 +107,7 @@ def check_iata(dep_iata, dest_iata, check_iata_online):
                 print('\nDeparture airport IATA code '
                       '%s not found on flyniki.com' % dep_iata)
                 dep_iata = False
-    if len(dest_iata) != 3 or re.match("[A-Z]*$", dest_iata) is None:
+    if re.match("[A-Z]{3}$", dest_iata) is None:
         print('\nIncorrect destination airport IATA code format '
               '%s. Use AAA format.' % dest_iata)
         dest_iata = False
