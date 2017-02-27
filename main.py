@@ -1,7 +1,7 @@
 import sys
 import datetime
-import requests
 import re
+import requests
 import lxml.html
 
 
