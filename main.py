@@ -22,7 +22,7 @@ Functions for checking search parameters
 # checking IATA
 
 
-def check_fly_parameters(search_parameters, check_iata_online=True):
+def check_search_parameters(search_parameters, check_iata_online=True):
     while True:
         count_errs = 0
         err_index = 0
@@ -511,7 +511,7 @@ def flyniki_search(search_parameters):
     while True:
         try:
             dep_iata, dest_iata, outbound_date, return_date = \
-                check_fly_parameters(search_parameters)
+                check_search_parameters(search_parameters)
             search_data = get_search_data(dep_iata, dest_iata, outbound_date,
                                           return_date).json()
             check_for_result_errors(search_data)
