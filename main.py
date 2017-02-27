@@ -13,9 +13,7 @@ class SearchError(RuntimeError):
     pass
 
 
-"""
-Functions for checking search parameters
-"""
+# Functions for checking search parameters
 
 # Function return parameters for search request at flyniki.com.
 # Use optional argument check_iata_online = False to not online
@@ -229,9 +227,7 @@ def get_airports_from_site(departures='', searchfor='departures', show=False):
     return airports
 
 
-"""
-Functions to get data from site and checking for errors
-"""
+# Functions to get data from site and checking for errors
 
 
 def get_search_data(dep_iata_, dest_iata_, outbound_date_, return_date_,
@@ -283,9 +279,7 @@ def check_for_result_errors(search_data):
                           'side. Keep searching!')
 
 
-"""
-Functions for getting search result
-"""
+# Functions for getting search result
 
 
 # The gathering of information on flights from the received data.
@@ -399,9 +393,7 @@ def get_currency_and_tax(search_data):
     return currency, tax
 
 
-"""
-Functions for printing results
-"""
+# Functions for printing results
 
 
 # Function to check the possibility of cobmining different cabin class.
