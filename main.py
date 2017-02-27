@@ -151,13 +151,11 @@ def format_date(date, to_type):
     Formating date
     """
     if to_type == 'to_date':
-        date = datetime.datetime.strptime(date, '%d.%m.%y')
-        return datetime.datetime.date(date)
+        return datetime.datetime.strptime(date, '%d.%m.%y').date()
     if to_type == 'to_str':
         return datetime.date.strftime(date, '%d.%m.%y')
     if to_type == 'to_flyniki':
-        date = datetime.datetime.strptime(date, '%d.%m.%y')
-        date = datetime.datetime.date(date)
+        date = datetime.datetime.strptime(date, '%d.%m.%y').date()
         return datetime.date.strftime(date, '%Y-%m-%d')
     if to_type == 'to_datetime':
         return datetime.datetime.strptime(date, '%d.%m.%y %H:%M')
