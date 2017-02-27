@@ -256,7 +256,7 @@ def check_for_result_errors(search_data):
 
 def data_processing(search_html, return_date):
     """
-    The gathering of information on flights from the received data. flights_ = [outbound table, return table].
+    The gathering of information on flights from the received data. flights = [outbound table, return table].
     Each table list of: [departure time, arrival time, difference in days, duration, [price1, price2,...]].
     Price is selected from two possible (current and lowest), defaults to the current, but sometimes it does not exist.
     If price 'notbookable' - price = 0
