@@ -230,26 +230,26 @@ def get_airports_from_site(departures='', searchfor='departures', show=False):
 # Functions to get data from site and checking for errors
 
 
-def get_search_data(dep_iata_, dest_iata_, outbound_date_, return_date_,
+def get_search_data(dep_iata, dest_iata, outbound_date, return_date,
                     lang='en', shop='RU'):
     session = requests.Session()
-    outbound_date_ = format_date(outbound_date_, 'to_flyniki')
-    if return_date_ == 'oneway':
-        return_date_ = ''
+    outbound_date = format_date(outbound_date, 'to_flyniki')
+    if return_date == 'oneway':
+        return_date = ''
         oneway = 'on'
     else:
-        return_date_ = format_date(return_date_, 'to_flyniki')
+        return_date = format_date(return_date, 'to_flyniki')
         oneway = ''
     request_data = [('_ajax[templates][]', 'main'),
                     ('_ajax[templates][]', 'priceoverview'),
                     ('_ajax[templates][]', 'infos'),
                     ('_ajax[templates][]', 'flightinfo'),
-                    ('_ajax[requestParams][departure]', dep_iata_),
-                    ('_ajax[requestParams][destination]', dest_iata_),
+                    ('_ajax[requestParams][departure]', dep_iata),
+                    ('_ajax[requestParams][destination]', dest_iata),
                     ('_ajax[requestParams][returnDeparture]', ''),
                     ('_ajax[requestParams][returnDestination]', ''),
-                    ('_ajax[requestParams][outboundDate]', outbound_date_),
-                    ('_ajax[requestParams][returnDate]', return_date_),
+                    ('_ajax[requestParams][outboundDate]', outbound_date),
+                    ('_ajax[requestParams][returnDate]', return_date),
                     ('_ajax[requestParams][adultCount]', '1'),
                     ('_ajax[requestParams][childCount]', '0'),
                     ('_ajax[requestParams][infantCount]', '0'),
