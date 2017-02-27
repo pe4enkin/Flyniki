@@ -293,7 +293,7 @@ Functions for getting search result
 # [departure time, arrival time, difference in days, duration,
 # [price1, price2,...]]. Price is selected from two possible
 # (current and lowest), defaults to the current, but sometimes
-# it does not exist. If price 'notbookable' price = 0
+# it does not exist. If price 'notbookable' - price = 0
 # fare_types = [[outbound fare types][return fare types]]. Each table
 # list of used cabin classes.
 
@@ -500,16 +500,6 @@ def print_mix_result(flights, fares, currency, tax, route, mix_fare):
               '{0: >12,.2f}'.format(elem[8]).replace(',', ' ') +
               '{0: ^20}'.format(elem[9]))
         print('{0:-^142}'.format(''))
-
-
-def except_handling(error):
-    if type(error) is requests.ConnectionError:
-        print('\nNo response from www.flyniki.com')
-    elif type(error) in (ValueError, KeyError, IndexError):
-        print('\nWrong data format from www.flyniki.com')
-    else:
-        print('\nPlease send this text to developers:')
-        print(error)
 
 
 # Main function.
