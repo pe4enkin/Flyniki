@@ -9,7 +9,7 @@ import lxml.html
 
 def except_handling(error):
     if type(error) is requests.ConnectionError:
-        print('\nNo response from www.flyniki.com1231')
+        print('\nNo response from www.flyniki.com')
     elif type(error) in (ValueError, KeyError, IndexError):
         print('\nWrong data format from www.flyniki.com')
     else:
