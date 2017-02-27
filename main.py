@@ -300,10 +300,10 @@ Functions for getting search result
 
 def data_processing(search_html, return_date):
     fare_types = []
-    flights_ = []
+    flights = []
     flight_tables = 1 if return_date == 'oneway' else 2
     for table in xrange(1, flight_tables+1):
-        flights_.append([])
+        flights.append([])
         fare_types.append(search_html.xpath('''(//*[@class='faretypes'])['''
                                             + str(table) + ''']
                                             //td/div[1]/label/p/text()'''))
@@ -314,14 +314,14 @@ def data_processing(search_html, return_date):
                                     [''' + str(table) + ''']
                                     //*[@class='flightrow selected']''')
         for index, row in enumerate(fly_rows):
-            flights_[table-1].append([])
-            flights_[table-1][index].append(str(row.xpath('''string(td[2]
+            flights[table-1].append([])
+            flights[table-1][index].append(str(row.xpath('''string(td[2]
                                                         /span/time[1])''')))
-            flights_[table-1][index].append(str(row.xpath('''string(td[2]
+            flights[table-1][index].append(str(row.xpath('''string(td[2]
                                                         /span/time[2])''')))
-            flights_[table-1][index].append(str(row.xpath('''string(td[2]
+            flights[table-1][index].append(str(row.xpath('''string(td[2]
                                                         /span/strong)''')))
-            flights_[table-1][index].append(str(row.xpath('''string(td[4]
+            flights[table-1][index].append(str(row.xpath('''string(td[4]
                                                         /span)''')))
             for td in xrange(5, 5+len(fare_types[table-1])):
                 if len(row.xpath('''string(td[''' + str(td) + ''']
@@ -333,10 +333,10 @@ def data_processing(search_html, return_date):
                                         /label/div[1]/span)''')
                     if len(price) == 0:
                         price = low_price
-                    flights_[table-1][index].append(str(price))
+                    flights[table-1][index].append(str(price))
                 else:
-                    flights_[table-1][index].append('0')
-    return fare_types, flights_
+                    flights[table-1][index].append('0')
+    return fare_types, flights
 
 
 # Adds the date to the time
