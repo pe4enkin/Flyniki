@@ -258,9 +258,9 @@ def data_processing(search_html, return_date):
     flight_tables = 1 if return_date == 'oneway' else 2
     for table in xrange(1, flight_tables+1):
         flights.append([])
-        fare_types.append(search_html.xpath('(//*[@class="faretypes"])[{0}]//td/div[1]/label/p/text()'.format(table)))
-        fly_rows = search_html.xpath('(//*[@class="flighttable"])[{0}]//*[@class="flightrow"]|'
-                                     '(//*[@class="flighttable"])[{0}]//*[@class="flightrow selected"]'.format(table))
+        fare_types.append(search_html.xpath('(//*[@class="faretypes"])[{}]//td/div[1]/label/p/text()'.format(table)))
+        fly_rows = search_html.xpath('(//*[@class="flighttable"])[{0}]//*[@class="flightrow"]'
+                                     '|(//*[@class="flighttable"])[{0}]//*[@class="flightrow selected"]'.format(table))
         for index, row in enumerate(fly_rows):
             flights[table-1].append([])
             flights[table-1][index].append(str(row.xpath('string(td[2]/span/time[1])')))
@@ -268,9 +268,9 @@ def data_processing(search_html, return_date):
             flights[table-1][index].append(str(row.xpath('string(td[2]/span/strong)')))
             flights[table-1][index].append(str(row.xpath('string(td[4]/span)')))
             for td in xrange(5, 5+len(fare_types[table-1])):
-                if len(row.xpath('string(td[{0}]/span)'.format(td))) == 0:
-                    price = row.xpath('string(td[{0}]/label/div[2]/span)'.format(td))
-                    low_price = row.xpath('string(td[{0}]/label/div[1]/span)'.format(td))
+                if len(row.xpath('string(td[{}]/span)'.format(td))) == 0:
+                    price = row.xpath('string(td[{}]/label/div[2]/span)'.format(td))
+                    low_price = row.xpath('string(td[{}]/label/div[1]/span)'.format(td))
                     if len(price) == 0:
                         price = low_price
                     flights[table-1][index].append(str(price))
@@ -358,13 +358,13 @@ def print_oneway_result(flights, fares, currency, tax, route):
         for price_index in xrange(3, 3+len(fares[0])):
             if row[price_index] == 0:
                 continue
-            line = line + '{0: >12,.2f}'.format(row[price_index]).replace(',', ' ') + \
-                          '  {0: ^18}'.format(fares[0][price_index-3]) + \
-                          '{0: >15,.2f}'.format(row[price_index]+tax).replace(',', ' ')
-            line = '{0: >87}'.format(line)
+            line = line + '{: >12,.2f}'.format(row[price_index]).replace(',', ' ') + \
+                          '  {: ^18}'.format(fares[0][price_index-3]) + \
+                          '{: >15,.2f}'.format(row[price_index]+tax).replace(',', ' ')
+            line = '{: >87}'.format(line)
             print(line)
-            line = '{0: >55}'.format('')
-        print('{0:-^112}'.format(''))
+            line = '{: >55}'.format('')
+        print('{:-^112}'.format(''))
 
 
 def print_mix_result(flights, fares, currency, tax, route, mix_fare):
@@ -411,12 +411,12 @@ def print_mix_result(flights, fares, currency, tax, route, mix_fare):
                  'Total price with tax' + currency) + '\n')
     for elem in sorted(mix_flights, key=lambda x: x[11]):
         print('{0: ^15}{1: ^20}{2: ^20}{3: ^15}'.format('outbound', elem[0], elem[1], elem[2]) +
-              '{0: >12,.2f}'.format(elem[3]).replace(',', ' ') + '{0: ^20}'.format(elem[4]))
-        print('{0: >100}'.format('') + '{0: >15,.2f}'.format(elem[10]).replace(',', ' ') +
-              '{0: >20,.2f}'.format(elem[11]).replace(',', ' '))
+              '{: >12,.2f}'.format(elem[3]).replace(',', ' ') + '{: ^20}'.format(elem[4]))
+        print('{: >100}'.format('') + '{: >15,.2f}'.format(elem[10]).replace(',', ' ') +
+              '{: >20,.2f}'.format(elem[11]).replace(',', ' '))
         print('{0: ^15}{1: ^20}{2: ^20}{3: ^15}'.format('return', elem[5], elem[6], elem[7]) +
-              '{0: >12,.2f}'.format(elem[8]).replace(',', ' ') + '{0: ^20}'.format(elem[9]))
-        print('{0:-^142}'.format(''))
+              '{: >12,.2f}'.format(elem[8]).replace(',', ' ') + '{: ^20}'.format(elem[9]))
+        print('{:-^142}'.format(''))
 
 
 def flyniki_search(search_parameters):
