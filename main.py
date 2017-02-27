@@ -423,17 +423,17 @@ def print_oneway_result(flights, fares, currency, tax, route):
         'Departure time', 'Arrival time', 'Duration', '  Price' + currency,
         'Cabin class', 'Total price with tax' + currency)+'\n')
     for row in sorted(flights[0], key=lambda x: x[0]):
-        s = '{0: ^20}{1: ^20}{2: ^15}'.format(row[0], row[1], row[2])
+        line = '{0: ^20}{1: ^20}{2: ^15}'.format(row[0], row[1], row[2])
         for price_index in xrange(3, 3+len(fares[0])):
             if row[price_index] == 0:
                 continue
-            s = s + '{0: >12,.2f}'.format(row[price_index]).\
+            line = line + '{0: >12,.2f}'.format(row[price_index]).\
                 replace(',', ' ') + '  {0: ^18}'\
                 .format(fares[0][price_index-3]) + '{0: >15,.2f}'\
                 .format(row[price_index]+tax).replace(',', ' ')
-            s = '{0: >87}'.format(s)
-            print(s)
-            s = '{0: >55}'.format('')
+            line = '{0: >87}'.format(line)
+            print(line)
+            line = '{0: >55}'.format('')
         print('{0:-^112}'.format(''))
 
 
